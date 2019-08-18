@@ -23,9 +23,9 @@ function style() {
 //compress js
 gulp.task('compress', function () {
   return pipeline(
-        gulp.src('script/*.js'),
+        gulp.src('babel/main.js'),
         uglify(),
-        gulp.dest('script')
+        gulp.dest('babel')
   );
 });
 //babel
@@ -34,7 +34,7 @@ gulp.task('babel', () =>
         .pipe(babel({
             presets: ['@babel/env']
         }))
-        .pipe(gulp.dest('script'))
+        .pipe(gulp.dest('babel'))
 );
 //imageMin
 gulp.task('imagemin', () =>
@@ -44,7 +44,7 @@ gulp.task('imagemin', () =>
 );
 //autoPrefix
 gulp.task('autoprefix', () =>
-    gulp.src('css/style.css')
+    gulp.src('css/**/*.css')
         .pipe(autoprefixer({
             browsers: ['last 10 versions'],
             cascade: false
